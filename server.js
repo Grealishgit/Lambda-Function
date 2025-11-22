@@ -24,7 +24,7 @@ job.start();
 //     })();
 // });
 
-app.get('/status', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Server is running');
 });
 

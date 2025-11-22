@@ -64,7 +64,8 @@ export async function pingAll() {
 
 // Run every 30 minutes at 0 seconds (every 30 minutes)
 export const job = new CronJob(
-    '0 0 */3 * * *', // cronTime: at second 0 of every 30 minutes
+    // '0 0 */3 * * *',
+    '0 */10 * * * *', // cronTime: at second 0 of every 10 minutes
     async function () {
         console.log(`[${new Date().toISOString()}] Starting scheduled ping job`);
         const statuses = await pingAll();
