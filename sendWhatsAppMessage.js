@@ -12,7 +12,27 @@ export async function sendStatusWhatsApp(statuses) {
         return { success: false, error: 'Twilio credentials missing' };
     }
 
-    const body = `URL Status Update:\n${statuses.map(s => `${s.url}: ${s.status}`).join('\n')}`;
+    const time = new Date().toLocaleTimeString('en-KE', {
+        timeZone: 'Africa/Nairobi',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+
+    // 2. Build the list with icons
+    const list = statuses.map(s => {
+        const isUp = s.status === 200;
+        const icon = isUp ? '✅' : '🔴';
+        // Format: Icon [Status] URL
+        return `${icon} *${s.status || 'ERR'}* | ${s.url}`;
+    }).join('\n');
+
+    // 3. Assemble the final message
+    const body = `*📊 SERVER HEALTH REPORT*\n` +
+        `🕒 _Checked at ${time}_\n` +
+        `────────────────\n` +
+        `${list}\n` +
+        `────────────────\n` +
+        `🤖 _System Monitor By HunterDev!_`;
 
     try {
         const message = await client.messages.create({
