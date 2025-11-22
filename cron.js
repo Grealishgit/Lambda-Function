@@ -57,9 +57,9 @@ export async function pingAll() {
     }
 }
 
-// Run every minute at 0 seconds (every minute)
+// Run every 10 minutes at 0 seconds (every 10 minutes)
 export const job = new CronJob(
-    '0 * * * * *', // cronTime: at second 0 of every minute
+    '0 */10 * * * *', // cronTime: at second 0 of every 10 minutes
     async function () {
         console.log(`[${new Date().toISOString()}] Starting scheduled ping job`);
         await pingAll();
