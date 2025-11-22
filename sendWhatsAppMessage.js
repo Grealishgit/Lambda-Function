@@ -15,7 +15,8 @@ export async function sendStatusWhatsApp(statuses) {
     const time = new Date().toLocaleTimeString('en-KE', {
         timeZone: 'Africa/Nairobi',
         hour: '2-digit',
-        minute: '2-digit'
+        minute: '2-digit',
+        second: '2-digit'
     });
 
     // 2. Build the list with icons
