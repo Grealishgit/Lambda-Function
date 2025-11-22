@@ -1,6 +1,7 @@
 import { CronJob } from 'cron';
 import https from 'https';
 import { URL } from 'url';
+import { sendStatusWhatsApp } from './sendWhatsAppMessage.js';
 
 const urls = [
     'https://bwm-xmd-go-5tnq.onrender.com/',
@@ -47,22 +48,27 @@ async function fetchUrl(url, timeout = 10000) {
 }
 
 export async function pingAll() {
+    const results = [];
     for (const url of urls) {
         try {
             const res = await fetchUrl(url);
             console.log(`[${new Date().toISOString()}] PING ${url} => ${res.status}`);
+            results.push({ url, status: res.status, ok: res.ok });
         } catch (err) {
             console.error(`[${new Date().toISOString()}] ERROR ping ${url}:`, err && err.message ? err.message : err);
+            results.push({ url, status: 'ERROR', ok: false, error: err.message });
         }
     }
+    return results;
 }
 
-// Run every 10 minutes at 0 seconds (every 10 minutes)
+// Run every 30 minutes at 0 seconds (every 30 minutes)
 export const job = new CronJob(
-    '0 */10 * * * *', // cronTime: at second 0 of every 10 minutes
+    '0 */30 * * * *', // cronTime: at second 0 of every 30 minutes
     async function () {
         console.log(`[${new Date().toISOString()}] Starting scheduled ping job`);
-        await pingAll();
+        const statuses = await pingAll();
+        await sendStatusWhatsApp(statuses);
     }, // onTick
     null, // onComplete
     true, // start immediately

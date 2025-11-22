@@ -1,6 +1,7 @@
 import express from 'express';
 import { job } from './cron.js';
 import { pingAll } from './cron.js';
+import 'dotenv/config';
 
 const app = express();
 const PORT = 4000;
