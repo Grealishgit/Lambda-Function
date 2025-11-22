@@ -4,9 +4,9 @@ import { URL } from 'url';
 import { sendStatusWhatsApp } from './sendWhatsAppMessage.js';
 
 const urls = [
-    'https://bwm-xmd-go-5tnq.onrender.com/',
-    'https://bwm-xmd-go-av72.onrender.com/',
-    'https://bwm-xmd-go-pk6k.onrender.com/'
+    'https://bwm-xmd-go-5tnq.onrender.com',
+    'https://bwm-xmd-go-av72.onrender.com',
+    'https://bwm-xmd-go-pk6k.onrender.com'
 ];
 
 async function fetchUrl(url, timeout = 10000) {
