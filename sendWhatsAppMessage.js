@@ -1,5 +1,6 @@
 import twilio from 'twilio';
 import 'dotenv/config';
+import quotes from './quotes.js'
 
 
 export async function sendStatusWhatsApp(statuses) {
@@ -33,7 +34,8 @@ export async function sendStatusWhatsApp(statuses) {
         `────────────────\n` +
         `${list}\n` +
         `────────────────\n` +
-        `🤖 _System Monitor By HunterDev!_`;
+        `🤖 _System Monitor By HunterDev!_\n` +
+        `💡 Quote of the moment:\n${quotes.getRandom()}`;
 
     try {
         const message = await client.messages.create({
