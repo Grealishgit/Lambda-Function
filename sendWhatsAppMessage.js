@@ -13,11 +13,23 @@ export async function sendStatusWhatsApp(statuses) {
         return { success: false, error: 'Twilio credentials missing' };
     }
 
-    const time = new Date().toLocaleTimeString('en-KE', {
+    // const time = new Date().toLocaleTimeString('en-KE', {
+    //     timeZone: 'Africa/Nairobi',
+    //     hour: '2-digit',
+    //     minute: '2-digit',
+    //     second: '2-digit'
+    // });
+
+    /* format time and date to  20th August 2024, 14:30:15 */
+    const formattedDateTime = new Date().toLocaleDateString('en-KE', {
         timeZone: 'Africa/Nairobi',
+        year: 'numeric',
+        month: 'long',
+        day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
-        second: '2-digit'
+        second: '2-digit',
+        hour12: false
     });
 
     // 2. Build the list with icons
@@ -30,13 +42,13 @@ export async function sendStatusWhatsApp(statuses) {
 
     // 3. Assemble the final message
     const body = `*📊 SERVER HEALTH REPORT*\n` +
-        `🕒 _Checked at ${time}_\n` +
-        `────────────────\n` +
+        `🕒 _Checked at ${formattedDateTime}_\n` +
+        `──────────────────────────────────\n` +
         `${list}\n` +
-        `────────────────\n` +
-        `🤖 _System Monitor By HunterDev!_\n` +
-        `────────────────\n\n` +  
-        `💡 Quote of the moment:\n${quotes.getRandom()}`;
+        `\n` +
+        ` _System Monitor By HunterDev!_\n` +
+        `──────────────────────────────────\n\n` +
+        `💡 *Quote of the moment*:\n${quotes.getRandom()}`;
 
     try {
         const message = await client.messages.create({
