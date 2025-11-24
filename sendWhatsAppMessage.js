@@ -35,6 +35,7 @@ export async function sendStatusWhatsApp(statuses) {
         `${list}\n` +
         `────────────────\n` +
         `🤖 _System Monitor By HunterDev!_\n` +
+        `────────────────\n\n` +  
         `💡 Quote of the moment:\n${quotes.getRandom()}`;
 
     try {

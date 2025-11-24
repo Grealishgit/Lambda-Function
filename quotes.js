@@ -2254,7 +2254,7 @@ const quotes = [
 
 const getRandom = () => {
     const randomIndex = Math.floor(Math.random() * quotes.length);
-    return `"${quotes[randomIndex].text}" - ${quotes[randomIndex].author}`;
+    return `"${quotes[randomIndex].text}"\n\n *- ${quotes[randomIndex].author} -*`;
 };
 
 export default { getRandom };
