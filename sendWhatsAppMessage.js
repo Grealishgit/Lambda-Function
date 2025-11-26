@@ -54,6 +54,7 @@ export async function sendStatusWhatsApp(statuses) {
         const message = await client.messages.create({
             body,
             from: process.env.TWILIO_WHATSAPP_NUMBER,
+            mediaUrl: ["https://res.cloudinary.com/da35m1zxz/image/upload/v1764181369/servers_q30ysw.jpg"],
             to: "whatsapp:+254742636835",
         });
         console.log(`WhatsApp status message sent: ${message.sid}`);
