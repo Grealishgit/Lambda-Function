@@ -42,7 +42,7 @@ export async function sendStatusWhatsApp(statuses) {
 
     // 3. Assemble the final message
     const body = `*SERVER HEALTH REPORT*\n` +
-        `🕒 _Checked at ${formattedDateTime}_\n` +
+        ` _Checked at ${formattedDateTime}_\n` +
         `──────────────────────────────────\n` +
         `${list}\n` +
         `\n` +
