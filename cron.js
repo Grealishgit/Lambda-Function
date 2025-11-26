@@ -5,7 +5,6 @@ import { sendStatusWhatsApp } from './sendWhatsAppMessage.js';
 
 
 const urls = [
-    'https://bwm-xmd-go-5tnq.onrender.com',
     'https://bwm-xmd-go-av72.onrender.com',
     'https://bwm-xmd-go-pk6k.onrender.com',
     'https://hunterdev.live',
